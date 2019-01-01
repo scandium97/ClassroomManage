@@ -5,7 +5,7 @@ import java.sql.*;
 public class DbUtil {
 	static String db_url = "jdbc:mysql://localhost:3306/crms?serverTimezone=UTC";
 	static String user = "root";
-	static String password ="19970710";
+	static String password ="********";
 	static String driver = "com.mysql.cj.jdbc.Driver";
 	static public Connection GetConnection() {
 		Connection conn = null;
