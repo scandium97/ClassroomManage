@@ -1,0 +1,24 @@
+package Demo;
+import java.io.*;
+import java.util.Hashtable;
+public class UserManage {
+	UserManage(String filename){
+		try {
+			File file = new File(filename);
+			if(!file.exists()) {
+				file.createNewFile();
+				Hashtable hashtable = new Hashtable();
+				
+			}
+			else {
+				
+			}
+		}
+		catch(Exception e1) {
+			
+		}
+	}
+	UserManage(){
+		
+	}
+}

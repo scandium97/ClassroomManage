@@ -1,0 +1,9 @@
+package bean;
+
+public class Booking {
+	private int weekNo;
+	private int timeNo;
+	private String reason;
+	Booking(){}
+	
+}

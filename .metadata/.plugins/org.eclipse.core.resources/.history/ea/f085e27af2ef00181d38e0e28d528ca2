@@ -1,0 +1,84 @@
+/**
+ * 
+ */
+var select = null;
+function show_select(){
+	var s ="";
+	if(select!=null){
+		var day =  parseInt(select[1]);
+		var t = parseInt(select[0]);
+		s = "您选择了周"+day+"第"+t+"大节";
+	}else{
+		s ="您当前还未选择任何时间";
+	}
+	$("#user_select").html(s);
+}
+
+function set_classname(){
+	var x = document.getElementById("CID");
+	$("h3").text(x.value + "教室");
+}
+function submitBook(){
+	alert(select);
+	if(select==null){
+		alert("您未选择！");
+	}else{
+	}
+}
+
+function tdclick(){
+	var x = $(this).attr("id");
+	if(x!=null){
+	if(select==null){
+		select = x;
+		$(this).css("background-color","blue");
+	}else if(x!=select){
+		var s = ".period:eq("+String(select[0]-1)+") td:eq("+String(select[1]-1)+")";
+		$(s).css("background-color","white");
+		select = x;
+		$(this).css("background-color","blue");
+	}else{
+		$(this).css("background-color","white");
+		select=null;
+	}
+	}
+	show_select();
+}
+
+function getSchedule(){
+	var x="";
+	
+	return x;
+}
+
+$(document).ready(function(){
+	
+	set_classname();
+	for(var i=0;i<=5;i++){
+		for(var j=0;j<7;j++){
+			var sel = ".period:eq("+i+") td:eq("+j+")";	
+			$(sel).attr("id",String(10*i+j+11));
+			$(sel).html(String(10*j+i+11));
+		}
+	}
+	$("td").css("text-align","center");
+	for(var w=1;w<=18;w++){
+		$("#week").append("<option>"+w+"</option>");
+	}
+	$("td").mouseover(function(){
+		var x = $(this).attr("id");
+		if(select != x){
+			$(this).css("background-color","yellow");
+		}
+
+	});
+	$("td").mouseout(function(){
+		var x = $(this).attr("id");
+		if(select!=x){
+			$(this).css("background-color","white");
+		}
+	});
+	$("td").click(tdclick);
+	$("#submit").click(submitBook);
+	
+});

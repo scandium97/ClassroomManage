@@ -1,0 +1,22 @@
+package Demo;
+import java.io.*;
+
+public class UserManage {
+	UserManage(String filename){
+		try {
+			File file = new File(filename);
+			if(!file.exists()) {
+				file.createNewFile();
+			}
+			else {
+				
+			}
+		}
+		catch(Exception e1) {
+			
+		}
+	}
+	UserManage(){
+		
+	}
+}

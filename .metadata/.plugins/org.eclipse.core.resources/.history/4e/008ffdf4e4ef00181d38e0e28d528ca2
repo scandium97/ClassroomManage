@@ -1,0 +1,44 @@
+/**
+ * 
+ */
+function getBookList(){
+	$.get("BookingList",function(data){
+		var x = JSON.parse(data);
+		$("#waiting").append("<li>"+String(x)+"</li>");
+	})
+}
+
+function se_classroom(){
+	$.get("ClassroomId",function(data){
+		var x = JSON.parse(data);
+		//alert(data);
+		for(var i=0;i<x.num;i++){
+			$("#cr").append("<option>"+x.cr_ids[i]+"</option>");
+		}
+	})
+}
+function se_week(){
+	for(var i=1;i<=18;i++){
+            var s = "<option>第"+i+"周</option>";
+            $("#week").append(s);
+        }
+	//$("#week").append("<option></option>");
+    }
+    function se_day(){
+        var array = ["一","二","三","四","五","六","日"];
+        for (i in array){
+            $("#day").append("<option>"+array[i]+"</option>");
+        }
+    }
+    function se_time(){
+        for(var i=1;i<=6;i++){
+            $("#time").append("<option>"+i+"</option>");
+        }
+    }
+    $(document).ready(function(){
+        se_week();
+        se_day();
+        se_time();
+        se_classroom();
+        getBookList();
+    });

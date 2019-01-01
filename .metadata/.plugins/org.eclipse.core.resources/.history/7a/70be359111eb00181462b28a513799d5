@@ -1,0 +1,26 @@
+package bean;
+
+public class Booking {
+	private String user_id;
+	private String cr_id;
+	private int weekNo;
+	private int timeNo;
+	private String reason;
+	Booking(){}
+	Booking(String u, String cr, int a , int b , String c){
+		user_id=u;
+		cr_id = cr;
+		weekNo = a;
+		timeNo = b;
+		reason = c;
+	}
+	public int GetWeekNo() {
+		return weekNo;
+	}
+	public int GetTimeNo() {
+		return timeNo;
+	}
+	public String GetReason() {
+		return reason;
+	}
+}

@@ -1,0 +1,56 @@
+package crms;
+
+import java.io.IOException;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import dao.ScheduleDAO;
+import java.util.ArrayList;
+/**
+ * Servlet implementation class GetSchedule
+ */
+@WebServlet("/GetSchedule")
+public class GetSchedule extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public GetSchedule() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String cr = request.getParameter("crid");
+		int week = Integer.parseInt(request.getParameter("weekno"));
+		ArrayList<Integer> list = ScheduleDAO.GetSchedule(cr, week);
+		int Ntime=6,Nday=7;
+		String tmp = "0000000"+"0000000"+"0000000"+"0000000"+
+				"0000000"+"0000000";
+		StringBuilder res = new StringBuilder(tmp);
+		for(int i=0;i<list.size();i++) {
+			int x = list.get(i),d,ti;
+			if(x>0) {
+				d = x/10-1; ti = x%10-1;
+				res.setCharAt(Ntime*d+ti, '1');
+			}else if(x<0) {
+				x = -x; d = x/10; ti = x%10;
+			}
+		}
+	}
+
+}

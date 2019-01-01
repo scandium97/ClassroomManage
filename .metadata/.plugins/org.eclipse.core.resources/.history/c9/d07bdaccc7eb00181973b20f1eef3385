@@ -1,0 +1,24 @@
+package dao;
+
+
+import db.DbUtil;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.sql.ResultSet;
+
+public class ClassRoom {
+	static public void getAllClassroomId() {
+		Connection conn = DbUtil.GetConnection();
+		String sql = "select cr_id from classroom where status=1";
+		try {
+			Statement smt = conn.createStatement();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+}

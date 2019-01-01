@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>LOG</title>
+</head>
+<body>
+
+<h1 align ="center">LOG IN</h1>
+<p align="center">
+Please enter your username and password
+</p>
+<form action="main.jsp" method="GET" >
+<p align ="center">
+username: <input type="text" name = "uname">
+</p><p align = "center">
+password: <input type="text" name = "passwd">
+</p>
+<p align = center>
+<input type="submit" value="OK" align="center" />
+</p>
+</form>
+</body>
+</html>

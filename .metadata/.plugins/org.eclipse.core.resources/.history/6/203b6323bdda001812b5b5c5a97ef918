@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>log-in</title>
+</head>
+<body>
+<h1 style="text-align:center"> Welcome to my site! Please log in! </h1>
+
+<form action='log' method='POST'>
+<p style="text-align:center">
+username: <input type='text' name='username'>
+</p>
+<p style="text-align:center">
+password: <input type='text' name= 'passwd'>
+</p>
+<p style="text-align:center">
+<input type='submit' value='OK' >
+</p>
+
+<p style="text-align:center">
+<img src="img/1a.JPG" alt="1a img"  />
+</p>
+</form>
+</body>
+</html>

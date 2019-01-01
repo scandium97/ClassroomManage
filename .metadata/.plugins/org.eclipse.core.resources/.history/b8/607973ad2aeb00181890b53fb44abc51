@@ -1,0 +1,74 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Main Page</title>
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
+</script>
+<style>
+	ul li{
+		width:60px;
+    	float:left;
+    	list-style:none;
+	}
+</style>
+<script>
+$(document).ready(function(){
+	var uid = "<=%request.getParameter('uid')>";
+	$.get("UserBook","uid='2015000001'",function(data){
+		alert(data);
+		var x = JSON.parse(data);
+		var cr = x.booking[0].crid;
+		var w = x.booking[0].weekno;
+		var d = x.booking[0].dayno;
+		var t = x.booking[0].timeNo;
+		$("#a").html(cr+"  第 "+w+"周 &nbsp "+ "星期 "+d+"&nbsp&nbsp第 "+t+"小节 ");
+	});
+}
+);
+</script>
+
+</head>
+<body>
+	<p>您好，您现在可以看到您的预约信息和四教的教室列表</p>
+	<p>如果您想要预约教室，您需要点开该教室的详细信息</p>
+	<p>如果您想要删除自己的预约，点击后面的删除按钮就好</p>
+	<p>感谢您的使用！</p>
+	<br/>
+	<p></p>
+	<p id= "a"></p>
+	
+	<br/>
+	<p>一楼</p>
+	<ul>
+		<li>4101</li>
+		<li>4102</li>
+		<li>4103</li>
+		<li>4104</li>
+		<li>4105</li>
+		<li>4106</li>
+	</ul>
+	<br/>
+	<p>二楼</p>
+	<ul>
+		<li>4201</li>
+		<li>4202</li>
+		<li>4203</li>
+		<li>4204</li>
+		<li>4205</li>
+		<li>4206</li>
+	</ul>
+	<br/>
+	<p>三楼</p>
+	<ul>
+		<li>4301</li>
+		<li>4302</li>
+		<li>4303</li>
+		<li>4304</li>
+		<li>4305</li>
+		<li>4306</li>
+	</ul>
+</body>
+</html>

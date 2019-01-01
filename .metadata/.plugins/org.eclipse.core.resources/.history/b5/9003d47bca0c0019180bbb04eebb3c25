@@ -1,0 +1,69 @@
+package dao;
+import db.DbUtil;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.sql.ResultSet;
+import bean.Booking;
+
+public class AdminDAO {
+	//return true when id& pw could match  a admin user!
+	static public boolean AdminLogin(String id,String pw) {
+		String sql = "select count(*) as num from admin"
+				+ " where admin_id=? and admin_pw=?";
+		Connection conn = DbUtil.GetConnection();
+		int num = 0;
+		try {
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			pstm.setString(1, id);  pstm.setString(2, pw);
+			ResultSet rs = pstm.executeQuery();
+			while(rs.next()) {
+				num = rs.getInt("num");
+			}
+		} catch (SQLException e) {
+			System.out.println("ERROR: admin user log in");
+			e.printStackTrace();
+		}
+		return (num>0);
+	}
+	
+	static public boolean DeleteSchedule(Booking t) {
+		String sql = "DELETE FROM schedule WHERE cr_id=? AND week_no=? "
+				+ "and day_no=? and time_no=?";
+		Connection conn = DbUtil.GetConnection();
+		boolean rs = false;
+		try {
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			pstm.setString(1, t.GetCrId()); 
+			pstm.setInt(2, t.GetWeekNo());
+			pstm.setInt(3, t.GetDayNo());
+			pstm.setInt(4, t.GetTimeNo());
+			rs = pstm.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("ERROR: admin user log in");
+			e.printStackTrace();
+		}
+		return rs;
+	}
+	static public boolean UpdateSchedule(Booking t) {
+		String sql = "UPDATE schedule SET booking_type=?,user_id=? WHERE "
+				+ "cr_id=? and week_no=? and "
+				+ "day_no=? and time_no=?";
+		Connection conn = DbUtil.GetConnection();
+		try {
+			PreparedStatement pstm = conn.prepareStatement(sql);
+			pstm.setString(1, t.GetReason()); pstm.setString(2, t.GetUserId());
+			pstm.setString(3, t.GetCrId());  pstm.setInt(4, t.GetWeekNo());
+			pstm.setInt(5, t.GetDayNo());   pstm.setInt(6, t.GetTimeNo());
+			pstm.executeUpdate();
+			return true;
+		} catch (SQLException e) {
+			System.out.println("ERROR: UpdateSchedule--Change type");
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+}

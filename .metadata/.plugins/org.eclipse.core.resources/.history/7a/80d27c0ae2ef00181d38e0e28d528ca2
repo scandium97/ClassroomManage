@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+  <display-name>Hello</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <servlet-name>Login</servlet-name>
+    <servlet-class>crms.Login</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Login</servlet-name>
+    <url-pattern>/login</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Reg</servlet-name>
+    <servlet-class>crms.Reg</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Reg</servlet-name>
+    <url-pattern>/Register</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>UserBook</servlet-name>
+    <servlet-class>crms.UserBook</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserBook</servlet-name>
+    <url-pattern>/UserBooking</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>ClassroomId</servlet-name>
+  	<servlet-class>crms.ClassroomId</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ClassroomId</servlet-name>
+  	<url-pattern>/ClassroomId</url-pattern>
+  </servlet-mapping>
+</web-app>

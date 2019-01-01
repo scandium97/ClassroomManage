@@ -1,0 +1,24 @@
+package dao;
+import db.DbUtil;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.sql.ResultSet;
+import bean.Booking;
+
+public class AdminDAO {
+	static public boolean AdminLogin(String id,String pw) {
+		String sql = "select count(*) from admin"
+				+ " where admin_id=? and admin_pw=?";
+		Connection conn = DbUtil.GetConnection();
+		try {
+			PreparedStatement pstm = conn.prepareStatement(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("ERROR: admin user log in");
+			e.printStackTrace();
+		}
+		
+	}
+}

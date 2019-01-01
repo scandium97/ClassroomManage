@@ -1,0 +1,58 @@
+package dao;
+
+import db.DbUtil;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.ResultSet;
+
+import java.util.ArrayList;
+
+import bean.Booking;
+
+
+public class BookingDAO {
+	static public ArrayList<Booking> getWaitingQueue() {
+		ArrayList<Booking> list = new ArrayList<Booking>();
+		Connection conn = DbUtil.GetConnection();
+		String sql = "SELECT user_id, cr_id, week_no,day_no,time_no,reason FROM waitingqueue";
+		try {
+			Statement smt = conn.createStatement();
+			ResultSet rs = smt.executeQuery(sql);
+			while(rs.next()) {
+				Booking tmp = new Booking(rs.getString("user_id"),rs.getString("cr_id"),
+						rs.getInt("week_no"),rs.getInt("day_no"),
+						rs.getInt("time_no"), "" );
+				list.add(tmp);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	static public boolean IsBookingLeagal(Booking b) {
+		Connection conn = DbUtil.GetConnection();
+		String checksql = "SELECT user_id FROM schedule WHERE"
+				+ " cr_id=? AND week_no=? AND day_no=?"
+				+ " AND time_no=?";
+		String r = null;
+		try {
+			PreparedStatement psmt = conn.prepareStatement(checksql);
+			psmt.setString(1, b.GetCrId());
+			psmt.setInt(2, b.GetWeekNo());
+			psmt.setInt(3, b.GetDayNo());
+			psmt.setInt(4, b.GetTimeNo());
+			ResultSet rs = psmt.executeQuery();
+			while(rs.next()) {
+				r = rs.getString("user_id");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return (r==null);
+	}
+	static public boolean Permitting(Booking b) {
+		
+	}
+}

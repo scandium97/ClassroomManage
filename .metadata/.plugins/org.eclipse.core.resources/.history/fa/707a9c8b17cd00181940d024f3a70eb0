@@ -1,0 +1,27 @@
+package Demo;
+import java.io.*;
+import java.util.Hashtable;
+public class UserManage {
+	private Hashtable hashtable;
+	UserManage(String filename){
+		try {
+			File file = new File(filename);
+			if(!file.exists()) {
+				file.createNewFile();
+				hashtable = new Hashtable();
+				
+			}
+			else {
+				ObjectInputStream oos = ObjectInputStream(new FileInputStream(filename));
+				
+			}
+		}
+		catch(Exception e1) {
+			System.out.println("sth is wrong!");
+		}
+	}
+	
+	UserManage(){
+		UserManage("./user.dat");
+	}
+}

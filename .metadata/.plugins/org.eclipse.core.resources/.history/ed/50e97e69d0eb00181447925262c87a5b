@@ -1,0 +1,35 @@
+package dao;
+
+import db.DbUtil;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.ResultSet;
+
+import java.util.ArrayList;
+
+import bean.Booking;
+
+
+public class BookingDAO {
+	static public ArrayList<Booking> getWaitingQueue() {
+		ArrayList<Booking> list = new ArrayList<Booking>();
+		Connection conn = DbUtil.GetConnection();
+		String sql = "SELECT cr_id, week_no,day_no,time_no FROM waitingqueue";
+		try {
+			Statement smt = conn.createStatement();
+			ResultSet rs = smt.executeQuery(sql);
+			while(rs.next()) {
+				Booking tmp = new Booking(uid,rs.getString("cr_id"),
+						rs.getInt("week_no"),rs.getInt("day_no"),
+						rs.getInt("time_no"), "" );
+				list.add(tmp);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+}

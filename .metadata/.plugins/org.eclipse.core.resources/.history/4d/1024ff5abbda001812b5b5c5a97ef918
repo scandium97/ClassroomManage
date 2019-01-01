@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>log-in</title>
+<script>
+function f(){
+	var isw = '<%=request.getAttribute("isw")%>';
+	if(isw==true){
+		document.getElementById("js").innerHTML="your info is wrong!";
+	}
+}
+</script>
+</head>
+<body>
+<h1 style="text-align:center"> Welcome to my site! Please log in! </h1>
+
+<form action='log' method='POST'>
+<p style="text-align:center">
+username: <input type='text' name='username'>
+</p>
+<p style="text-align:center">
+password: <input type='text' name= 'passwd'>
+</p>
+<p style="text-align:center">
+<p id="js" color="red"></p>
+<input type='submit' value='OK' >
+</p>
+</form>
+</body>
+</html>

@@ -1,0 +1,73 @@
+package Demo;
+import java.io.*;
+import java.util.Hashtable;
+
+
+public class UserManage {
+	private Hashtable<String,String> hashtable;
+	private String filename ; 
+	public UserManage(){
+		this("../user.dat");
+	}
+	public UserManage(String f){
+		filename = f;
+		try {
+			File file = new File(filename);
+			if(!file.exists()) {
+				file.createNewFile();
+				hashtable = new Hashtable<String,String>(200);
+				try {
+					ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename));
+					oos.writeObject(hashtable);
+					oos.close();
+				}
+				catch(IOException e) {
+					e.printStackTrace();
+				}
+			}
+			else {
+				ObjectInputStream ois =new ObjectInputStream( new FileInputStream(filename));
+				hashtable = (Hashtable<String,String>) ois.readObject();
+				ois.close();
+			}
+		}
+		catch(Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	
+	public void Demo() {
+		hashtable.put("suichong", "8888");
+		hashtable.put("cat", "mmmm");
+	}
+	
+	public void AddUser(String name , String passwd) {
+		if (this.IsUserExist(name)) return ;
+		else {
+			hashtable.put(name, passwd);
+		}
+		this.SaveData();
+	}
+	public boolean IsUserExist(String name) {
+		return hashtable.containsKey(name);
+	}
+	public String GetPasswd(String name) {
+		return hashtable.get(name);
+	}
+	public void  SaveData() {
+		try {
+			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename));
+			oos.writeObject(hashtable);
+			oos.close();
+		}
+		catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void main(String[] args) {
+		UserManage um = new UserManage();
+		
+	}
+	
+}

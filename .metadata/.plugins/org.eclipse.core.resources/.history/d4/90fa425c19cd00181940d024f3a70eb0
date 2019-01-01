@@ -1,0 +1,41 @@
+package Demo;
+import java.io.*;
+import java.util.Hashtable;
+public class UserManage {
+	private Hashtable hashtable;
+	UserManage(String filename){
+		try {
+			File file = new File(filename);
+			if(!file.exists()) {
+				file.createNewFile();
+				hashtable = new Hashtable();
+				
+			}
+			else {
+				ObjectInputStream oos =new ObjectInputStream( new FileInputStream(filename));
+				hashtable = (Hashtable) oos.readObject();
+				oos.close();
+			}
+		}
+		catch(Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	
+
+	UserManage(){
+		this("./user.dat");
+	}
+	public void AddUser(String name , String passwd) {
+		if (this.IsUserExist(name)) return ;
+		else {
+			hashtable.put(name, passwd);
+		}
+	}
+	public boolean IsUserExist(String name) {
+		return hashtable.containsKey(name);
+	}
+	public String getPasswd(String name) {
+		return "";
+	}
+}

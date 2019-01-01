@@ -1,0 +1,35 @@
+package dao;
+import db.DbUtil;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.ResultSet;
+
+import java.util.ArrayList;
+import bean.Booking;
+
+public class ScheduleDAO {
+	static public ArrayList<Booking> GetSchedule(String cr,int week) {
+		ArrayList<Booking> list = new ArrayList<Booking>();
+		Booking t = null;
+		String sql = "SELECT day_no,time_no,booking_type FROM schedule"
+				+ " WHERE cr_id=? AND week_no=?";
+		Connection conn = DbUtil.GetConnection();
+		try {
+			PreparedStatement psmt = conn.prepareStatement(sql);
+			psmt.setString(1, cr);
+			psmt.setInt(2, week);
+			ResultSet rs = psmt.executeQuery();
+			while(rs.next()) {
+				rs.getInt("day_no");
+				rs.getInt("time_no");
+				rs.getString("booking_type");
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+}
